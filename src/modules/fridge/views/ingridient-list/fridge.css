@@ -1,0 +1,46 @@
+.fridge-container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    width: calc(100% - 32px);
+    max-width: 1200px;
+    align-self: center;
+}
+
+.table__header .MuiTableCell-head {
+    font-weight: bold;
+}
+
+.table__content .MuiTableRow-root:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.fridge-container .add-button {
+    align-self: flex-end;
+    margin-top: 12px;
+    background-color: #3f51b5;
+    color: #fefefe;
+}
+
+.fridge-container .add-button:hover {
+    background-color: #002984;
+}
+
+.fridge__pagination .MuiToolbar-root {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.fridge__pagination .MuiTablePagination-actions {
+    margin-left: 0;
+}
+
+.fridge__pagination .MuiTypography-root {
+    margin-right: 20px;
+}
+
+@media only screen and (max-width: 281px) {
+    .fridge__pagination .MuiToolbar-root {
+        justify-content: center;
+    }
+}

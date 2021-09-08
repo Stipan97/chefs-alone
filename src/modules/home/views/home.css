@@ -1,0 +1,28 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: calc(100vh - var(--header-height));
+}
+
+.home-container > button {
+    margin-bottom: 24px;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 4px;
+}
+
+@media only screen and (max-width: 892px) {
+    .home-grid {
+        grid-template-columns: 1fr;
+    }
+    .home-container {
+        padding-top: var(--header-height);
+        justify-content: flex-start;
+    }
+}

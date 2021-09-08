@@ -1,0 +1,56 @@
+:root {
+    --header-height: 64px;
+}
+
+header.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--header-height);
+    padding: 8px 8px 8px 16px;
+
+    width: 100%;
+    min-width: 280px;
+}
+
+.bar-maxwidth {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.header__logo {
+    align-items: center;
+    height: 36px;
+    margin-right: 12px;
+}
+
+.header__title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+}
+
+.header__button {
+    align-self: center;
+    height: fit-content;
+}
+
+.button-icon--white {
+    color: white;
+}
+
+.menu .MuiList-root {
+    padding: 0;
+}
+
+li.MuiButtonBase-root.menu-item__logout {
+    border-radius: 4px;
+    background-color: red;
+    color: white;
+}

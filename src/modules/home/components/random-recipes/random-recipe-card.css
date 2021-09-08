@@ -1,0 +1,11 @@
+.card__summary {
+    line-height: 1.2rem;
+    height: 7.2rem;
+    overflow: hidden;
+}
+
+.card--flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

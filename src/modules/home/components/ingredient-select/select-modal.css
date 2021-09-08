@@ -1,0 +1,13 @@
+.card-content__table {
+    height: 256px;
+    overflow: auto;
+}
+
+.modal__wrapper.modal__wrapper--bigger {
+    transform: translateY(calc(var(--header-height) / 2));
+    height: 440px;
+}
+
+.modal.modal--bigger .close-button {
+    top: calc(50vh - 215px);
+}
