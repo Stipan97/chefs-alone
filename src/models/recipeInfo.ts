@@ -6,6 +6,10 @@ export interface RecipeInfoResponse {
   data: RecipeInfoData;
 }
 
+export interface RecipeInfoResponseBulk {
+  data: RecipeInfoData[];
+}
+
 export interface RecipeInfoData {
   id: string;
   title: string;

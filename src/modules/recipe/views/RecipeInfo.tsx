@@ -16,8 +16,19 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { rootReducerState } from '../../../models';
 import { RecipeInfoData, RecipeInfoResponse } from '../../../models/recipeInfo';
+import {
+  auth,
+  firestore,
+  firestoreRef,
+} from '../../../services/firebase/firebaseProvider';
+import {
+  addLikedRecipe,
+  removeLikedRecipe,
+} from '../../../services/redux/actions/likedRecipesActions';
 
 import './recipe-info.css';
 
@@ -29,6 +40,10 @@ export const RecipeInfo: React.FC = () => {
   const { id } = useParams<routerRecipeParams>();
   const [recipeInfo, setRecipeInfo] = useState<RecipeInfoData>();
   const [checked, setChecked] = useState([0]);
+  const likedRecipes = useSelector(
+    (state: rootReducerState) => state.likedRecipes.data,
+  );
+  const dispatch = useDispatch();
 
   const handleCheckList = (index: number) => () => {
     const currentIndex = checked.indexOf(index);
@@ -39,6 +54,34 @@ export const RecipeInfo: React.FC = () => {
       : newChecked.splice(currentIndex, 1);
 
     setChecked(newChecked);
+  };
+
+  const onClickLikeRecipe = () => {
+    firestore
+      .collection('liked-recipes')
+      .doc(auth.currentUser?.uid)
+      .update({
+        likedRecipes: firestoreRef.FieldValue.arrayUnion({
+          likedRecipe: id,
+        }),
+      })
+      .then(() => {
+        dispatch(addLikedRecipe(id));
+      });
+  };
+
+  const onClickUnlikeRecipe = () => {
+    firestore
+      .collection('liked-recipes')
+      .doc(auth.currentUser?.uid)
+      .update({
+        likedRecipes: firestoreRef.FieldValue.arrayRemove({
+          likedRecipe: id,
+        }),
+      })
+      .then(() => {
+        dispatch(removeLikedRecipe(id));
+      });
   };
 
   useEffect(() => {
@@ -63,6 +106,24 @@ export const RecipeInfo: React.FC = () => {
               alt={recipeInfo.title}
             />
             <div className="recipe__main-info">
+              {likedRecipes.findIndex((item) => item.likedRecipe === id) !==
+              -1 ? (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={onClickUnlikeRecipe}
+                >
+                  Unlike this recipe
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={onClickLikeRecipe}
+                >
+                  Like this recipe
+                </Button>
+              )}
               <p>
                 <span>Diets: </span>
                 {recipeInfo.diets.map((diet, index) => (

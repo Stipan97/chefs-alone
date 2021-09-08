@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { rootReducerState } from '../../../models';
 import { setRecipesInfo } from '../../../services/redux/actions/infoRecipeActions';
+import { getLikedRecipes } from '../../../services/redux/actions/likedRecipesActions';
+import { RecipeCardSummary } from '../../../shared/modules/recipe-card-summary/RecipeCardSummary';
 import { SelectModal } from '../components/ingredient-select/SelectModal';
-import { RandomRecipeCard } from '../components/random-recipes/RandomRecipeCard';
 
 import './home.css';
 
@@ -32,6 +33,10 @@ export const Home: React.FC = () => {
     dispatch(setRecipesInfo());
   }, [dispatch, randomRecipes.length]);
 
+  useEffect(() => {
+    dispatch(getLikedRecipes());
+  }, [dispatch]);
+
   return (
     <>
       <div className="home-container">
@@ -51,7 +56,7 @@ export const Home: React.FC = () => {
           ) : (
             <>
               {randomRecipes.map((recipe) => (
-                <RandomRecipeCard key={recipe.id} recipe={recipe} />
+                <RecipeCardSummary key={recipe.id} recipe={recipe} />
               ))}
             </>
           )}

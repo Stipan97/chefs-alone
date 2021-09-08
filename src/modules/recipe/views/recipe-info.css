@@ -42,7 +42,8 @@ h2 {
     align-items: flex-end;
     justify-content: center;
     width: 100%;
-    padding: 24px;
+    padding-right: 24px;
+    padding-left: 24px;
 }
 
 .recipe__main-info p span {

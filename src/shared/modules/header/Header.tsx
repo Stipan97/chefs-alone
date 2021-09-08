@@ -11,6 +11,7 @@ import { clearFridgeIngredients } from '../../../services/redux/actions/fridgeIn
 import ChefHat from '../../../assets/chef.png';
 
 import './header.css';
+import { clearLikedRecipes } from '../../../services/redux/actions/likedRecipesActions';
 
 export const Header: React.FC = () => {
   const userRedux = useSelector((state: rootReducerState) => state.user.data);
@@ -23,6 +24,7 @@ export const Header: React.FC = () => {
     auth.signOut().then(() => {
       dispatch(logoutCurrentUser());
       dispatch(clearFridgeIngredients());
+      dispatch(clearLikedRecipes());
       history.push('/login');
     });
   };
@@ -41,6 +43,14 @@ export const Header: React.FC = () => {
     }
 
     history.push('/fridge');
+  };
+
+  const onClickLikedRecipes = () => {
+    if (userRedux) {
+      setShowMenu(!showMenu);
+    }
+
+    history.push('/liked-recipes');
   };
 
   const toggleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -75,6 +85,7 @@ export const Header: React.FC = () => {
               }}
             >
               <MenuItem onClick={onClickFridge}>Fridge</MenuItem>
+              <MenuItem onClick={onClickLikedRecipes}>Liked recipes</MenuItem>
               <MenuItem className="menu-item__logout" onClick={onClickLogout}>
                 Logout
               </MenuItem>

@@ -14,6 +14,7 @@ import { auth } from './services/firebase/firebaseProvider';
 import { setCurrentUser } from './services/redux/actions/currentUserActions';
 
 import './main.css';
+import { LikedRecipes } from './modules/liked-recipes/views/LikedRecipes';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ export const App: React.FC = () => {
               <Redirect exact from="/resetpassword" to="/home" />
               <Route path="/home" component={Home} />
               <Route path="/fridge" component={Fridge} />
+              <Route path="/liked-recipes" component={LikedRecipes} />
               <Route path="/recipes" component={RecipesList} />
               <Route path="/recipe/:id" component={RecipeInfo} />
             </>
@@ -51,6 +53,7 @@ export const App: React.FC = () => {
             <>
               <Redirect exact from="/home" to="/login" />
               <Redirect exact from="/fridge" to="/login" />
+              <Redirect exact from="/liked-recipes" to="/login" />
               <Redirect exact from="/recipes" to="/login" />
               <Redirect exact from="/recipe/:id" to="/login" />
               <Route exact path="/" component={Register} />

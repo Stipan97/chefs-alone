@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import { currentUserReducer } from '../reducers/currentUserReducer';
 import { fridgeIngredientsReducer } from '../reducers/fridgeIngredientsReducer';
 import { infoRecipeReducer } from '../reducers/infoRecipeReducer';
+import { likedRecipesReducer } from '../reducers/likedRecipesReducer';
 import { recipesListReducer } from '../reducers/recipesReducer';
 
 export const store = createStore(
@@ -12,6 +13,7 @@ export const store = createStore(
     fridge: fridgeIngredientsReducer,
     recipes: recipesListReducer,
     recipesInfo: infoRecipeReducer,
+    likedRecipes: likedRecipesReducer,
   }),
   composeWithDevTools(applyMiddleware(thunk)),
 );

@@ -1,15 +1,15 @@
 import { Button, Card, CardContent, CardHeader } from '@material-ui/core';
 import React from 'react';
 import { useHistory } from 'react-router';
-import { RecipeInfoData } from '../../../../models/recipeInfo';
+import { RecipeInfoData } from '../../../models/recipeInfo';
 
-import './random-recipe-card.css';
+import './recipe-card-summary.css';
 
 interface RecipeCardProps {
   recipe: RecipeInfoData;
 }
 
-export const RandomRecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
+export const RecipeCardSummary: React.FC<RecipeCardProps> = ({ recipe }) => {
   const history = useHistory();
 
   const onClickRecipe = (event: React.MouseEvent<HTMLElement>) => {
